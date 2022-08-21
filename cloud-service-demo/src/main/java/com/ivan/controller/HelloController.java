@@ -9,11 +9,31 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/demo")
 public class HelloController {
+
+    @Value("${server.port}")
+    private String port;
 
     @RequestMapping("/{name}")
     public String getCloudHello(@PathVariable String name) {
         return "Hello " + name;
     }
+
+    @RequestMapping("/port")
+    public String getCloudLocation() {
+        return port;
+    }
+
+    @RequestMapping("/hystrix")
+    public String getHystrix() {
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return port;
+    }
+
+
 }

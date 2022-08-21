@@ -6,7 +6,7 @@ spring:
 eureka:
   client: # 服务端自己也要向eureka注册
     service-url: # 客户端与EurekaServer交互的地址，如果是集群，也需要写其它Server的地址
-      defaultZone: http://localhost:9200/eureka/
+      defaultZone: http://localhost:9200/eureka/,http://localhost:9210/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
@@ -23,7 +23,7 @@ cloud-service-demo:
     #对所有操作都进行重试
     OkToRetryOnAllOperations: true
     MaxAutoRetries: 0 #对当前选中实例重试次数，不包括第一次调用
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #随机策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #随机策略
 
 # 配置熔断策略:
 hystrix:

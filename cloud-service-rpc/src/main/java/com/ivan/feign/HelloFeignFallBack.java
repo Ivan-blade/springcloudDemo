@@ -14,4 +14,14 @@ public class HelloFeignFallBack implements HelloFeign{
     public String getCloudHello(String name) {
         return "Hello visitor the service is fallback...";
     }
+
+    @Override
+    public String getCloudPort() {
+        return "fail to get port";
+    }
+
+    @Override
+    public String getHystrix() {
+        return "fail to get hystrix";
+    }
 }

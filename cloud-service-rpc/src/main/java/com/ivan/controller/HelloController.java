@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/helloRpc")
+@RequestMapping("/rpc")
 public class HelloController {
 
     @Autowired
@@ -26,4 +26,26 @@ public class HelloController {
     public String getName(@PathVariable String name) {
         return helloFeign.getCloudHello(name);
     }
+
+    @RequestMapping("/port")
+    @HystrixCommand(
+            threadPoolKey = "getCloudPort"
+    )
+    public String getCloudPort() {
+        return helloFeign.getCloudPort();
+    }
+
+
+    @RequestMapping("/hystrix")
+    @HystrixCommand(
+            threadPoolKey = "getHystrix"
+    )
+    public String getHystrix() {
+        return helloFeign.getHystrix();
+    }
+
+
+
+
+
 }

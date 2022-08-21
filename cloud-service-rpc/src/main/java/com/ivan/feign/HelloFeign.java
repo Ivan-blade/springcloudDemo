@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(name = "cloud-service-demo",fallback = HelloFeignFallBack.class)
 public interface HelloFeign {
 
-    @RequestMapping("/hello/{name}")
+    @RequestMapping("/demo/{name}")
     public String getCloudHello(@PathVariable String name);
+
+    @RequestMapping("/demo/port")
+    public String getCloudPort();
+
+    @RequestMapping("/demo/hystrix")
+    public String getHystrix();
 }
