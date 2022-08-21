@@ -13,3 +13,44 @@ eureka:
     #使用ip注册，否则会使用主机名注册了(此处考虑到对老版本的兼容，新版本经过实验都是ip)
     prefer-ip-address: true #自定义实例显示格式，加上版本号，便于多版本管理，注意是ip-address，早期版本是ipAddress
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+
+cloud-service-demo:
+  ribbon:
+    #请求连接超时时间
+    ConnectTimeout: 2000
+    #请求处理超时时间
+    ReadTimeout: 5000
+    #对所有操作都进行重试
+    OkToRetryOnAllOperations: true
+    MaxAutoRetries: 0 #对当前选中实例重试次数，不包括第一次调用
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #随机策略
+
+# 配置熔断策略:
+hystrix:
+  threadpool:
+    default:
+      coreSize: 16 #并发执行的最大线程数，16
+      maxQueueSize: 10000
+      queueSizeRejectionThreshold: 6000 # 即使maxQueueSize没有达到，达到该值后，请求也会被拒绝
+  command:
+    default:
+      circuitBreaker:
+        # 强制打开熔断器，如果该属性设置为true，强制断路器进入打开状态，将会拒绝所有的请求。默认false关闭的
+        forceOpen: false
+        # 触发熔断错误比例阈值，默认值50%
+        errorThresholdPercentage: 90
+        # 熔断后休眠时长，默认值5秒
+        sleepWindowInMilliseconds: 3000
+        # 熔断触发最小请求次数，默认值是20
+        requestVolumeThreshold: 2
+      execution:
+        isolation:
+          thread:
+            # 熔断超时设置
+            timeoutInMilliseconds: 5000
+
+feign:
+  hystrix:
+    enabled: true
+    response:
+      enabled: true #默认不开启

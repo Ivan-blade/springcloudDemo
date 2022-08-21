@@ -1,6 +1,7 @@
 package com.ivan.controller;
 
 import com.ivan.feign.HelloFeign;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ public class HelloController {
     private HelloFeign helloFeign;
 
     @RequestMapping("/{name}")
+    @HystrixCommand(
+            threadPoolKey = "getName"
+    )
     public String getName(@PathVariable String name) {
         return helloFeign.getCloudHello(name);
     }
