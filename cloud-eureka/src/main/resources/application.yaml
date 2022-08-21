@@ -1,0 +1,15 @@
+server:
+  port: 9200
+spring:
+  application:
+    name: cloud-eureka
+eureka:
+  client: # 服务端自己也要向eureka注册
+    service-url: # 客户端与EurekaServer交互的地址，如果是集群，也需要写其它Server的地址
+      defaultZone: http://localhost:9200/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    #使用ip注册，否则会使用主机名注册了(此处考虑到对老版本的兼容，新版本经过实验都是ip)
+    prefer-ip-address: true #自定义实例显示格式，加上版本号，便于多版本管理，注意是ip-address，早期版本是ipAddress
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@

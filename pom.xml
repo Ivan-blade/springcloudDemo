@@ -9,7 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>cloud-common</module>
-        <module>cloud-demo-service</module>
+        <module>cloud-service-demo</module>
+        <module>cloud-service-rpc</module>
+        <module>cloud-eureka</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -102,8 +104,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
