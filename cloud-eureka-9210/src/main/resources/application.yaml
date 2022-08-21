@@ -1,12 +1,12 @@
 server:
-  port: 8900
+  port: 9210
 spring:
   application:
-    name: cloud-service-demo
+    name: cloud-eureka
 eureka:
   client: # 服务端自己也要向eureka注册
     service-url: # 客户端与EurekaServer交互的地址，如果是集群，也需要写其它Server的地址
-      defaultZone: http://localhost:9200/eureka/,http://localhost:9210/eureka/
+      defaultZone: http://localhost:9200/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:

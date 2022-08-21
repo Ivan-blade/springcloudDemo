@@ -28,12 +28,7 @@ public class HelloController {
 
     @RequestMapping("/hystrix")
     public String getHystrix() {
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return port;
+        return "succeeded to test hystrix!";
     }
 
 
