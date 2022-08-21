@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>cloud-common</module>
+        <module>cloud-demo-service</module>
     </modules>
 
     <packaging>pom</packaging>
