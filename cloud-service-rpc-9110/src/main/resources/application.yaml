@@ -50,7 +50,5 @@ hystrix:
             timeoutInMilliseconds: 5000
 
 feign:
-  hystrix:
+  circuitbreaker:
     enabled: true
-    response:
-      enabled: true #默认不开启
