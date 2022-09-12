@@ -1,5 +1,6 @@
 package com.ivan.controller;
 
+import com.ivan.model.HelloInject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,8 @@ public class HelloController {
 
     @RequestMapping("/{name}")
     public String getCloudHello(@PathVariable String name) {
+
+        HelloInject helloInject = new HelloInject();
         return "Hello " + name;
     }
 
